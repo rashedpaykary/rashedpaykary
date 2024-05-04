@@ -6,17 +6,23 @@ function App() {
   return (
     <Layout>
       <div className="flex flex-wrap gap-3">
-        {/* // method1 map((item) => wrong{} // => (<Card />)correct => Because anything inside the parentheses has the return command for the array ) */}
-        {courses.map((item) => (
-          <Card
-            key={item.id} //uniq -
-            title={item.title}
-            image={item.img}
-            discription={item.description}
-            info={item.info}
-            action={() => alert(item.title)}
-          />
-        ))}
+        {/* // method1 map((item) => {
+          return(<Card />)
+        } // => (<Card />)correct => Because anything inside the parentheses has the return command for the array ) */}
+        {courses.map((item, index) => {
+          const isOpen = !!(index % 2);
+          return (
+            <Card
+              key={item.id} //uniq -
+              title={item.title}
+              image={item.img}
+              discription={item.description}
+              info={item.info}
+              action={() => alert(isOpen ? item.title : "end")}
+              isOpen={isOpen}
+            />
+          );
+        })}
       </div>
     </Layout>
   );
