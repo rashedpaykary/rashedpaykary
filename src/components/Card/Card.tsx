@@ -7,6 +7,8 @@ type CardProps = {
   info: string;
   action: () => void;
   ctaText?: string;
+  image: string;
+  isOpen?: boolean;
 };
 
 // method 1
@@ -20,14 +22,26 @@ function Card({
   info,
   action,
   ctaText = "اطلاعات بیشتر",
+  image,
+  isOpen = false,
 }: CardProps) {
   // method 2
   // Card(props:CardPrps)
   // <h2>{props.title}</h2>
 
   return (
-    <div className="border-2 border-solid border-white p-3 rounded-md shadow-[0_2px_10px_0_#999999] flex flex-col justify-between items-center m-2 basis-64 grow">
+    <div className="border-2 border-solid border-white p-3 rounded-md shadow-[0_2px_10px_0_#999999] flex flex-col justify-between items-center m-2 basis-64 grow relative overflow-hidden">
+      {isOpen ? (
+        <div className="bg-red-500 text-white px-2 py-2 absolute left-[-20px] top-[20px] rotate-[-45deg]  z-[-10] text-sm">
+          درحال ثبت نام
+        </div>
+      ) : (
+        <div className="bg-blue-700 text-white px-2 py-2 absolute left-[-20px] top-[20px] rotate-[-45deg]  z-[-10] text-sm">
+          اتمام ثبت نام
+        </div>
+      )}
       <h2 className="font-bold text-2xl">{title}</h2>
+      <input type="text" className="bg-gray-200" disabled={false} />
       <img src={image} alt="" width={"25%"} />
       <p className="font-normal text-md text-justify leading-loose">
         {discription}
@@ -46,8 +60,17 @@ function Card({
 }
 
 export default Card;
-// Node.js از بهترین انتخاب‌ها برای سرمایه‌گذاری روی مهارت‌هاست. اگه به
-//         دنبال یادگیری یه مهارت ‌آینده‌دار هستی، تا رسیدن به اون فقط یه بوت‌کمپ
-//         فاصله داری!
 
-// 28 هفته | 300 ساعت آموزش
+// <div
+// method1
+// style={{ display: isOpen ? "block" : "none" }}
+// method2
+// className={
+// isOpen
+//   ? "bg-red-500 text-white px-2 py-2 absolute left-[-20px] top-[20px] rotate-[-45deg]  z-[-10] text-sm"
+//   : "hidden"
+// }
+// //   method3
+// >
+// در حال ثبت نام
+// </div>
