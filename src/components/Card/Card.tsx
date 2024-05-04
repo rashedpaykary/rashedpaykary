@@ -7,6 +7,7 @@ type CardProps = {
   info: string;
   action: () => void;
   ctaText?: string;
+  image: string;
 };
 
 // method 1
@@ -20,6 +21,7 @@ function Card({
   info,
   action,
   ctaText = "اطلاعات بیشتر",
+  image,
 }: CardProps) {
   // method 2
   // Card(props:CardPrps)
